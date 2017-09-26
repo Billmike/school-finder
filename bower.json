@@ -1,0 +1,20 @@
+{
+  "name": "school-finder",
+  "description": "A simple react application",
+  "main": "index.js",
+  "authors": [
+    "Bill Mike"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-css": "^3.3.7"
+  }
+}

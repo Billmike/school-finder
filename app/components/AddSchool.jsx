@@ -24,11 +24,11 @@ module.exports = React.createClass({
             <form className='form' onSubmit={ this.addSchool }>
                 <div className='form-group'>
                     <label className = 'control-label' htmlFor = 'name'> School Name: </label>
-                    <input type = 'text' className = 'form-control' id = 'name' name = 'name' value = { this.state.name } onChange = { this.handleInputChange } placeholder = 'Enter Schoolname here' />
+                    <input type = 'text' className = 'form-control' id = 'name' name = 'name' value = { this.state.name } onChange = { this.handleInputChange } placeholder = 'Enter Schoolname here' required />
                 </div>
                 <div className='form-group'>
                     <label className = 'control-label' htmlFor = 'tagline'> Tagline: </label>
-                    <input type = 'text' className = 'form-control' id = 'tagline' name = 'tagline' value = { this.state.address } onChange = { this.handleInputChange } placeholder = 'Enter a tagline for your school' />
+                    <input type = 'text' className = 'form-control' id = 'tagline' name = 'tagline' value = { this.state.address } onChange = { this.handleInputChange } placeholder = 'Enter a tagline for your school' required />
                 </div>
                 <div className = 'form-group' >
                     <button className = 'btn' type = 'submit' > Add School</button>

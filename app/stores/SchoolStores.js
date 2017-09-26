@@ -1,4 +1,5 @@
 var dispatcher = require('../dist/dispatcher');
+var schoolService = require('../services/schoolService');
 
 function SchoolStore() {
     var listeners = [];
@@ -6,33 +7,36 @@ function SchoolStore() {
                    { name: 'Bishop', tagline: 'Another top-notch school'},
                    { name: 'Daffodills', tagline: 'Sounds like a schoo for dogs' }];
     
-    function getSchools() {
-        return schools;
+    function getSchools(cb) {
+        schoolService.getSchools().then(function(res) {
+            cb(res);
+        });
     }
 
-    function onChange(listen) {
-        listeners.push(listen);
+    function onChange(listener) {
+        getSchools(listener)
+        listeners.push(listener);
     }
 
     function addSchool(school) {
-        schools.push(school);
-        triggerListeners();
+        schoolService.addSchool(school).then(function(res) {
+            console.log(res);
+            triggerListeners();
+        });
     }
 
     function deleteSchool(school) {
-        var _index;
-        schools.map(function(s, index) {
-            if(s.name === school.name) {
-                _index = index;
-            }
+        schoolService.deleteSchool(school).then(function(res) {
+            console.log(res);
+            triggerListeners();
         });
-        schools.splice(_index, 1);
-        triggerListeners();
     }
 
     function triggerListeners() {
-        listeners.forEach(function(listener) {
-            listener(schools);
+        getSchools(function(res) {
+            listeners.forEach(function(listener) {
+                listener(res);
+            });
         });
     }
 
@@ -51,7 +55,6 @@ function SchoolStore() {
     });
 
     return {
-        getSchools: getSchools,
         onChange: onChange
     }
 }
